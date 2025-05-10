@@ -17,7 +17,7 @@ userSuffix: ''
 memoriesTick: '系统活力'
 
 # 不需要更改的群聊群号
-notGroup:
+onlyGroup:
   - 123456
 
 # 激活的模块,可到model/autoGroupName文件夹下查看对应文件名

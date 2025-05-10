@@ -66,10 +66,15 @@ export class autoGroupName extends plugin {
 
   // 获取需要执行任务的群组
   get taskGroup () {
-    let allGroup = []
-    Bot.gl.forEach((v, k) => { allGroup.push(k) })
-    return lodash.difference(allGroup, this.appConfig.notGroup)
+  let allGroup = []
+  Bot.gl.forEach((v, k) => { allGroup.push(k) })
+  // 如果 onlyGroup 配置存在且非空，只处理 onlyGroup 中的群
+  if (this.appConfig.onlyGroup && this.appConfig.onlyGroup.length > 0) {
+    return allGroup.filter(id => this.appConfig.onlyGroup.includes(id))
   }
+  // 如果没配 onlyGroup，默认处理所有群
+  return allGroup
+}
 
   // 获取文件名后缀
   async fileExtName (fileAllName) {
